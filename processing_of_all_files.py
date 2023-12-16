@@ -30,19 +30,19 @@ def main(args):
     os.makedirs(optical_flow_input_dir, exist_ok=True)
 
     # Save PNG images generated from original Parquet files
-    # svel.save_images_from_original_parquet(image_input_dir, png_input_dir)
-    # of.process_and_save_corner_flows(png_input_dir, optical_flow_input_dir,args.corner_size)
-    # of.merge_json_files(optical_flow_input_dir)
+    svel.save_images_from_original_parquet(image_input_dir, png_input_dir)
+    of.process_and_save_corner_flows(png_input_dir, optical_flow_input_dir,args.corner_size)
+    of.merge_json_files(optical_flow_input_dir)
 
-    # svel.main_processing(
-    #     image_input_dir,
-    #     seg_input_dir,
-    #     image_vel_output_dir,
-    #     seg_vel_output_dir,
-    #     png_vel_output_dir,
-    #     args.speed_threshold,
-    #     base_vel_output_dir,
-    # )
+    svel.main_processing(
+        image_input_dir,
+        seg_input_dir,
+        image_vel_output_dir,
+        seg_vel_output_dir,
+        png_vel_output_dir,
+        args.speed_threshold,
+        base_vel_output_dir,
+    )
     # Optical flow processing for subset selected by velocity threshold
     optical_flow_vel_output_dir = os.path.join(base_vel_output_dir, "optical_flow")
     svel.copy_optical_flows_and_update_json(optical_flow_input_dir,png_vel_output_dir,optical_flow_vel_output_dir)
